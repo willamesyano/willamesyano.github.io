@@ -121,6 +121,73 @@
       ]
     },
     {
+      "id": "dublin-2015",
+      "kind": "break",
+      "company": {
+        "en": "Dublin, Ireland",
+        "pt-BR": "Dublin, Irlanda"
+      },
+      "short": "Dublin",
+      "role": {
+        "en": "Career break · English immersion",
+        "pt-BR": "Pausa na carreira · Imersão em inglês"
+      },
+      "start": "2015-01",
+      "end": "2016-01",
+      "location": null,
+      "summary": {
+        "en": "A year living in Dublin to become fluent in English. Alongside the course at SEDA College, I joined the local developer community and its events.",
+        "pt-BR": "Um ano morando em Dublin para ganhar fluência em inglês. Além do curso na SEDA College, participei da comunidade local de desenvolvedores e dos seus eventos."
+      },
+      "activities": {
+        "en": [
+          "General English course at SEDA College",
+          "Google I/O Extended Dublin 2015",
+          "Developer meetups and talks with GDG Dublin"
+        ],
+        "pt-BR": [
+          "Curso de inglês geral na SEDA College",
+          "Google I/O Extended Dublin 2015",
+          "Meetups e palestras com o GDG Dublin"
+        ]
+      },
+      "tech": [],
+      "photos": [
+        {
+          "src": "assets/img/dublin/google-dublin.jpg",
+          "thumb": "assets/img/dublin/google-dublin-thumb.jpg",
+          "alt": {
+            "en": "Willames at Google's Dublin office, next to the Android statue",
+            "pt-BR": "Willames no escritório do Google em Dublin, ao lado da estátua do Android"
+          }
+        },
+        {
+          "src": "assets/img/dublin/io-extended.jpg",
+          "thumb": "assets/img/dublin/io-extended-thumb.jpg",
+          "alt": {
+            "en": "Google I/O Extended Dublin 2015 video wall",
+            "pt-BR": "Painel do Google I/O Extended Dublin 2015"
+          }
+        },
+        {
+          "src": "assets/img/dublin/talk.jpg",
+          "thumb": "assets/img/dublin/talk-thumb.jpg",
+          "alt": {
+            "en": "Audience at a developer talk in Dublin",
+            "pt-BR": "Público numa palestra para desenvolvedores em Dublin"
+          }
+        },
+        {
+          "src": "assets/img/dublin/guest-badge.jpg",
+          "thumb": "assets/img/dublin/guest-badge-thumb.jpg",
+          "alt": {
+            "en": "Google guest badge with Willames's name",
+            "pt-BR": "Crachá de visitante do Google com o nome do Willames"
+          }
+        }
+      ]
+    },
+    {
       "id": "atlantico-2016",
       "company": "Instituto Atlântico",
       "short": "Instituto Atlântico",
@@ -457,7 +524,8 @@
       "certifications": "Certifications",
       "languages": "Languages",
       "email": "Email",
-      "footer": "Built with Three.js and hosted on GitHub Pages."
+      "footer": "Built with Three.js and hosted on GitHub Pages.",
+      "photos": "Photos"
     },
     "pt-BR": {
       "title": "Willames Yano · Engenheiro de Software Sênior",
@@ -482,7 +550,8 @@
       "certifications": "Certificações",
       "languages": "Idiomas",
       "email": "E-mail",
-      "footer": "Feito com Three.js e publicado no GitHub Pages."
+      "footer": "Feito com Three.js e publicado no GitHub Pages.",
+      "photos": "Fotos"
     }
   }
 }

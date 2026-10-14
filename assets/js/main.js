@@ -180,7 +180,7 @@ function renderPhaseList() {
   state.content.phases.forEach((phase, index) => {
     const button = state.labels[index].querySelector('button');
     button.setAttribute('aria-pressed', String(index === state.active));
-    button.setAttribute('aria-label', `${phase.start.slice(0, 4)} · ${phase.company} · ${t(phase.role)}`);
+    button.setAttribute('aria-label', `${phase.start.slice(0, 4)} · ${t(phase.company)} · ${t(phase.role)}`);
   });
 }
 
@@ -197,7 +197,7 @@ function renderDetail() {
       el('span', { className: 'detail-period', text: period }),
       el('span', { text: `${formatDuration(start, end)} · ${counter}` }),
     ]),
-    el('h3', { text: phase.company }),
+    el('h3', { text: t(phase.company) }),
     el('p', { className: 'detail-role', text: t(phase.role) }),
   ]);
   if (phase.location) {
@@ -212,6 +212,16 @@ function renderDetail() {
     body.append(
       el('h4', { text: ui('technologies') }),
       el('ul', { className: 'chips' }, phase.tech.map((tech) => el('li', { text: tech }))),
+    );
+  }
+  if (phase.photos) {
+    body.append(
+      el('h4', { text: ui('photos') }),
+      el('ul', { className: 'gallery' }, phase.photos.map((photo) => el('li', {}, [
+        el('a', { attrs: { href: photo.src, target: '_blank', rel: 'noopener' } }, [
+          el('img', { attrs: { src: photo.thumb, alt: t(photo.alt), loading: 'lazy' } }),
+        ]),
+      ]))),
     );
   }
 
@@ -284,7 +294,8 @@ function setupScene() {
       stage,
       labels: state.labels,
       techCounts: state.content.phases.map((phase) => phase.tech.length),
-      durations: state.content.phases.map((phase) => monthsBetween(parseMonth(phase.start), parseMonth(phase.end))),
+      durations: state.content.phases.map((phase) => (phase.kind === 'break' ? 0 : monthsBetween(parseMonth(phase.start), parseMonth(phase.end)))),
+      breaks: state.content.phases.map((phase) => phase.kind === 'break'),
       onSelect: selectPhase,
       reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
     });

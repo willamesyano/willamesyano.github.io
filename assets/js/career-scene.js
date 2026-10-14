@@ -133,7 +133,7 @@ function easeOutCubic(value) {
   return 1 - Math.pow(1 - value, 3);
 }
 
-export function createCareerScene({ canvas, stage, labels, techCounts, durations, onSelect, reducedMotion }) {
+export function createCareerScene({ canvas, stage, labels, techCounts, durations, breaks, onSelect, reducedMotion }) {
   const count = techCounts.length;
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -154,9 +154,15 @@ export function createCareerScene({ canvas, stage, labels, techCounts, durations
     top: new THREE.MeshBasicMaterial({ color: tones.active.top }),
     front: new THREE.MeshBasicMaterial({ color: tones.active.front, vertexColors: true }),
   };
+  const breakFaces = {
+    side: new THREE.MeshBasicMaterial({ color: tones.idle.side, vertexColors: true, transparent: true, opacity: 0.4, depthWrite: false }),
+    top: new THREE.MeshBasicMaterial({ color: tones.idle.top, transparent: true, opacity: 0.4, depthWrite: false }),
+    front: new THREE.MeshBasicMaterial({ color: tones.idle.front, vertexColors: true, transparent: true, opacity: 0.4, depthWrite: false }),
+  };
   const faceSet = (faces) => [faces.side, faces.side, faces.top, faces.side, faces.front, faces.front];
   const idleMaterials = faceSet(idleFaces);
   const activeMaterials = faceSet(activeFaces);
+  const breakMaterials = faceSet(breakFaces);
 
   const shadowTexture = gradientTexture((context) => {
     const gradient = context.createRadialGradient(32, 32, 0, 32, 32, 32);
@@ -328,7 +334,7 @@ export function createCareerScene({ canvas, stage, labels, techCounts, durations
 
   function paintPillars() {
     pillars.forEach((pillar, i) => {
-      pillar.material = i === active ? activeMaterials : idleMaterials;
+      pillar.material = i === active ? activeMaterials : (breaks[i] ? breakMaterials : idleMaterials);
       let edge = tones.edge;
       if (i === hovered) {
         edge = tones.hover;
@@ -612,6 +618,7 @@ export function createCareerScene({ canvas, stage, labels, techCounts, durations
     scene.fog.color.copy(palette.surface);
     for (const key of ['side', 'top', 'front']) {
       idleFaces[key].color.copy(tones.idle[key]);
+      breakFaces[key].color.copy(tones.idle[key]);
       activeFaces[key].color.copy(tones.active[key]);
     }
     pathMaterial.color.copy(palette.line);
