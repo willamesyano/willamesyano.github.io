@@ -370,7 +370,7 @@ a {
 .stage.is-3d .phase-tag::after {
   content: "";
   position: absolute;
-  left: 50%;
+  left: calc(50% - var(--nudge, 0px));
   width: 1px;
   height: 14px;
   background: var(--line);
@@ -388,7 +388,7 @@ a {
 }
 
 .stage.is-3d .is-below .phase-tag {
-  transform: translate(-50%, 18px);
+  transform: translate(calc(-50% + var(--nudge, 0px)), 18px);
 }
 
 .stage.is-3d .is-below .phase-tag::after {
@@ -396,7 +396,7 @@ a {
 }
 
 .stage.is-3d .is-above .phase-tag {
-  transform: translate(-50%, calc(-100% - 18px));
+  transform: translate(calc(-50% + var(--nudge, 0px)), calc(-100% - 18px));
 }
 
 .stage.is-3d .is-above .phase-tag::after {

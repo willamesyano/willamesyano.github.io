@@ -9,11 +9,19 @@ const HEIGHT_PER_MONTH = 0.075;
 const FLOW_COUNT = 42;
 const ORBIT_RADIUS = 0.7;
 const CLICK_TOLERANCE = 6;
+const NUDGES = [0, 28, -28, 56, -56, 84, -84];
+const DRAG_SPEED = 0.006;
+const FIT_STEP = 0.05;
+const LABEL_GAP = 18;
+const LABEL_PADDING = 6;
+const DIM_OPACITY = 0.28;
 const INTRO_STAGGER = 0.12;
 const INTRO_GROW = 0.9;
 const LANDSCAPE = {
   direction: new THREE.Vector3(0.32, 0.5, 1).normalize(),
   azimuthRange: 0.16,
+  dragMin: -0.6,
+  dragMax: 0.2,
   limitX: 0.8,
   limitTop: 0.7,
   limitBottom: -0.66,
@@ -21,6 +29,8 @@ const LANDSCAPE = {
 const PORTRAIT = {
   direction: new THREE.Vector3(1, 1.7, 0.45).normalize(),
   azimuthRange: 0.04,
+  dragMin: -0.12,
+  dragMax: 0.5,
   limitX: 0.5,
   limitTop: 0.8,
   limitBottom: -0.8,
@@ -238,6 +248,12 @@ export function createCareerScene({ canvas, stage, labels, techCounts, durations
   let visible = true;
   let pressed = null;
   let loopHandle = 0;
+  let userAzimuth = 0;
+  let userTarget = 0;
+  let spin = 0;
+  let fitStart = 0;
+  let fitTable = [];
+  const corner = new THREE.Vector3();
 
   function azimuthFor(index) {
     return (index / (count - 1) - 0.5) * 2 * view.azimuthRange;
@@ -249,31 +265,50 @@ export function createCareerScene({ canvas, stage, labels, techCounts, durations
     camera.lookAt(center);
   }
 
-  function framesAll(candidate) {
-    return [-view.azimuthRange * 1.15, 0, view.azimuthRange * 1.15].every((angle) => {
-      placeCamera(angle, candidate);
-      camera.updateMatrixWorld();
-      return [...bases, ...tops].every((point) => {
-        projected.copy(point).project(camera);
-        return Math.abs(projected.x) <= view.limitX && projected.y <= view.limitTop && projected.y >= view.limitBottom;
-      });
+  function fitsAt(angle, candidate) {
+    placeCamera(angle, candidate);
+    camera.updateMatrixWorld();
+    return [...bases, ...tops].every((point) => {
+      projected.copy(point).project(camera);
+      return Math.abs(projected.x) <= view.limitX && projected.y <= view.limitTop && projected.y >= view.limitBottom;
     });
   }
 
-  function fitCamera() {
+  function fitDistance(angle) {
     let low = 2;
     let high = 80;
     for (let i = 0; i < 30; i++) {
       const middle = (low + high) / 2;
-      if (framesAll(middle)) {
+      if (fitsAt(angle, middle)) {
         high = middle;
       } else {
         low = middle;
       }
     }
-    distance = high;
-    scene.fog.near = distance * 0.8;
-    scene.fog.far = distance * 2;
+    return high;
+  }
+
+  function distanceAt(angle) {
+    if (fitTable.length < 2) {
+      return distance;
+    }
+    const position = THREE.MathUtils.clamp((angle - fitStart) / FIT_STEP, 0, fitTable.length - 1);
+    const index = Math.min(Math.floor(position), fitTable.length - 2);
+    return THREE.MathUtils.lerp(fitTable[index], fitTable[index + 1], position - index);
+  }
+
+  function fitCamera() {
+    const limit = view.azimuthRange + Math.max(-view.dragMin, view.dragMax) + 0.1;
+    userTarget = THREE.MathUtils.clamp(userTarget, view.dragMin, view.dragMax);
+    fitStart = -limit;
+    fitTable = [];
+    for (let angle = -limit; angle <= limit + FIT_STEP; angle += FIT_STEP) {
+      fitTable.push(fitDistance(angle));
+    }
+    distance = distanceAt(azimuth + userAzimuth);
+    const reference = fitDistance(0);
+    scene.fog.near = reference * 0.8;
+    scene.fog.far = reference * 2;
   }
 
   function resize() {
@@ -323,19 +358,88 @@ export function createCareerScene({ canvas, stage, labels, techCounts, durations
     return easeOutCubic(THREE.MathUtils.clamp(local, 0, 1));
   }
 
-  function updateLabels(grown) {
-    for (let i = 0; i < count; i++) {
-      if (view === PORTRAIT || i % 2 === 0) {
-        anchor.copy(bases[i]).setY(heights[i] * grown[i]);
-      } else {
-        anchor.copy(bases[i]);
+  function toScreen(point) {
+    projected.copy(point).project(camera);
+    return { x: (projected.x + 1) / 2 * width, y: (1 - projected.y) / 2 * height, z: projected.z };
+  }
+
+  function activeBounds(grown) {
+    const top = heights[active] * grown[active];
+    const half = PILLAR_SIZE / 2;
+    const points = [];
+    for (const dx of [-half, half]) {
+      for (const dz of [-half, half]) {
+        for (const y of [0, top]) {
+          points.push(corner.copy(bases[active]).add(anchor.set(dx, y, dz)).clone());
+        }
       }
-      projected.copy(anchor).project(camera);
-      const x = (projected.x + 1) / 2 * width;
-      const y = (1 - projected.y) / 2 * height;
-      labels[i].style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
-      labels[i].style.zIndex = String(1000 - Math.round(projected.z * 500));
-      labels[i].style.opacity = String(THREE.MathUtils.clamp(grown[i] * 1.6 - 0.4, 0, 1));
+    }
+    if (orbit.visible) {
+      for (let k = 0; k < 8; k++) {
+        const angle = (k / 8) * Math.PI * 2;
+        points.push(bases[active].clone().add(anchor.set(Math.cos(angle) * ORBIT_RADIUS, top * 0.55, Math.sin(angle) * ORBIT_RADIUS)));
+      }
+    }
+    const screen = points.map(toScreen);
+    return {
+      left: Math.min(...screen.map((p) => p.x)) - LABEL_PADDING,
+      right: Math.max(...screen.map((p) => p.x)) + LABEL_PADDING,
+      top: Math.min(...screen.map((p) => p.y)) - LABEL_PADDING,
+      bottom: Math.max(...screen.map((p) => p.y)) + LABEL_PADDING,
+    };
+  }
+
+  function labelRect(index, side, size, grown, nudge) {
+    const portrait = view === PORTRAIT;
+    const point = side === 'above' || portrait ? bases[index].clone().setY(heights[index] * grown[index]) : bases[index];
+    const at = toScreen(point);
+    let left = at.x - size.width / 2 + nudge;
+    let top = side === 'above' ? at.y - LABEL_GAP - size.height : at.y + LABEL_GAP;
+    if (portrait) {
+      left = side === 'above' ? at.x - LABEL_GAP - size.width : at.x + LABEL_GAP;
+      top = at.y - size.height / 2;
+    }
+    return { at, nudge, left, top, right: left + size.width, bottom: top + size.height };
+  }
+
+  function overlaps(a, b) {
+    return a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+  }
+
+  function insideStage(rect) {
+    return rect.left >= 2 && rect.top >= 2 && rect.right <= width - 2 && rect.bottom <= height - 2;
+  }
+
+  function updateLabels(grown) {
+    const sizes = labels.map((label) => {
+      const tag = label.firstElementChild.firstElementChild;
+      return { width: tag.offsetWidth, height: tag.offsetHeight };
+    });
+    const placed = [activeBounds(grown)];
+    const order = [...labels.keys()].sort((a, b) => {
+      if (a === active || b === active) {
+        return a === active ? -1 : 1;
+      }
+      return Math.abs(a - active) - Math.abs(b - active);
+    });
+    for (const i of order) {
+      const preferred = i % 2 === 0 ? 'above' : 'below';
+      const alternative = preferred === 'above' ? 'below' : 'above';
+      const reach = sizes[i].width / 2 - 8;
+      const nudges = view === PORTRAIT ? [0] : NUDGES.filter((nudge) => Math.abs(nudge) <= reach);
+      const candidates = nudges.flatMap((nudge) => [preferred, alternative].map((side) => ({ side, rect: labelRect(i, side, sizes[i], grown, nudge) })));
+      const others = placed.slice(i === active ? 1 : 0);
+      const clear = ({ rect }) => others.every((other) => !overlaps(rect, other));
+      const free = candidates.find((candidate) => clear(candidate) && insideStage(candidate.rect)) ?? candidates.find(clear);
+      const chosen = free ?? candidates[0];
+      placed.push(chosen.rect);
+      labels[i].style.setProperty('--nudge', `${chosen.rect.nudge}px`);
+      labels[i].classList.toggle('is-above', chosen.side === 'above');
+      labels[i].classList.toggle('is-below', chosen.side === 'below');
+      const intro = THREE.MathUtils.clamp(grown[i] * 1.6 - 0.4, 0, 1);
+      labels[i].style.transform = `translate(${chosen.rect.at.x.toFixed(1)}px, ${chosen.rect.at.y.toFixed(1)}px)`;
+      labels[i].style.zIndex = String(1000 - Math.round(chosen.rect.at.z * 500) + (i === active ? 500 : 0));
+      labels[i].style.opacity = String(intro * (free || i === active ? 1 : DIM_OPACITY));
     }
   }
 
@@ -358,11 +462,20 @@ export function createCareerScene({ canvas, stage, labels, techCounts, durations
     progress.geometry.setDrawRange(0, Math.round(Math.min(progressValue, segments * introPath)) + 1);
 
     azimuth += (azimuthFor(active) - azimuth) * ease;
-    const sway = reducedMotion ? 0 : Math.sin(elapsed * 0.16) * 0.035;
+    if (!pressed?.dragging && spin !== 0) {
+      userTarget = THREE.MathUtils.clamp(userTarget + spin, view.dragMin, view.dragMax);
+      spin *= Math.exp(-delta * 5);
+      if (Math.abs(spin) < 0.0002) {
+        spin = 0;
+      }
+    }
+    userAzimuth += (userTarget - userAzimuth) * (reducedMotion ? 1 : 1 - Math.exp(-delta * 10));
+    const sway = reducedMotion || pressed?.dragging ? 0 : Math.sin(elapsed * 0.16) * 0.035;
+    distance = distanceAt(azimuth + userAzimuth + sway);
     direction.copy(view.direction);
     direction.x += parallax.x * 0.05;
     direction.y -= parallax.y * 0.035;
-    direction.normalize().applyAxisAngle(THREE.Object3D.DEFAULT_UP, azimuth + sway);
+    direction.normalize().applyAxisAngle(THREE.Object3D.DEFAULT_UP, azimuth + userAzimuth + sway);
     camera.position.copy(center).addScaledVector(direction, distance);
     camera.lookAt(center);
 
@@ -415,11 +528,25 @@ export function createCareerScene({ canvas, stage, labels, techCounts, durations
   canvas.addEventListener('pointermove', (event) => {
     const rect = canvas.getBoundingClientRect();
     parallax.set((event.clientX - rect.left) / rect.width * 2 - 1, (event.clientY - rect.top) / rect.height * 2 - 1);
+    if (pressed) {
+      const dx = event.clientX - pressed.lastX;
+      pressed.lastX = event.clientX;
+      if (!pressed.dragging && Math.hypot(event.clientX - pressed.x, event.clientY - pressed.y) > CLICK_TOLERANCE) {
+        pressed.dragging = true;
+        canvas.style.cursor = 'grabbing';
+      }
+      if (pressed.dragging) {
+        spin = -dx * DRAG_SPEED;
+        userTarget = THREE.MathUtils.clamp(userTarget + spin, view.dragMin, view.dragMax);
+        start();
+        return;
+      }
+    }
     if (event.pointerType !== 'mouse') {
       return;
     }
     const index = hitIndex(event);
-    canvas.style.cursor = index >= 0 ? 'pointer' : '';
+    canvas.style.cursor = index >= 0 ? 'pointer' : 'grab';
     if (index !== hovered) {
       hovered = index;
       paintPillars();
@@ -435,22 +562,39 @@ export function createCareerScene({ canvas, stage, labels, techCounts, durations
   });
 
   canvas.addEventListener('pointerdown', (event) => {
-    pressed = { x: event.clientX, y: event.clientY };
+    pressed = { x: event.clientX, y: event.clientY, lastX: event.clientX, dragging: false };
+    spin = 0;
+    canvas.setPointerCapture(event.pointerId);
   });
 
   canvas.addEventListener('pointerup', (event) => {
     if (!pressed) {
       return;
     }
-    const moved = Math.hypot(event.clientX - pressed.x, event.clientY - pressed.y);
+    const { dragging } = pressed;
     pressed = null;
-    if (moved > CLICK_TOLERANCE) {
+    canvas.style.cursor = 'grab';
+    if (dragging) {
+      if (reducedMotion) {
+        spin = 0;
+      }
       return;
     }
     const index = hitIndex(event);
     if (index >= 0) {
       onSelect(index);
     }
+  });
+
+  canvas.addEventListener('pointercancel', () => {
+    pressed = null;
+    spin = 0;
+  });
+
+  canvas.addEventListener('dblclick', () => {
+    spin = 0;
+    userTarget = 0;
+    start();
   });
 
   new ResizeObserver(resize).observe(stage);
