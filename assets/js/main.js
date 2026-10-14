@@ -227,7 +227,13 @@ function renderBackground() {
     el('span', { className: 'fact-title', text: t(item.degree) }),
     el('span', { className: 'fact-sub', text: `${item.school} · ${item.start === item.end ? item.start : `${item.start} · ${item.end}`}` }),
   ])));
-  bind('certifications').replaceChildren(...certifications.map((item) => el('li', {}, [el('span', { className: 'fact-title', text: item })])));
+  bind('certifications').replaceChildren(...certifications.map((item) => {
+    const entry = el('li', {}, [el('span', { className: 'fact-title', text: item.name })]);
+    if (item.issuer) {
+      entry.append(el('span', { className: 'fact-sub', text: `${item.issuer} · ${formatMonth(parseMonth(item.date))}` }));
+    }
+    return entry;
+  }));
   bind('languages').replaceChildren(...languages.map((item) => el('li', {}, [
     el('span', { className: 'fact-title', text: t(item.name) }),
     el('span', { className: 'fact-sub', text: t(item.level) }),

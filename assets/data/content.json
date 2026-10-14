@@ -256,7 +256,10 @@
       },
       "start": "2020-09",
       "end": "2024-02",
-      "location": null,
+      "location": {
+        "en": "São Paulo, Brazil",
+        "pt-BR": "São Paulo, Brasil"
+      },
       "summary": {
         "en": "New features and bug fixes for Maps Pegasus, a custody and control platform for investment funds and portfolios.",
         "pt-BR": "Novas funcionalidades e correções no Maps Pegasus, plataforma de custódia e controle de fundos de investimento e carteiras."
@@ -369,7 +372,7 @@
       "end": 2018
     },
     {
-      "school": "SEDA College",
+      "school": "SEDA College, Dublin",
       "degree": {
         "en": "General English Course",
         "pt-BR": "Curso de Inglês Geral"
@@ -388,11 +391,25 @@
     }
   ],
   "certifications": [
-    "Certified Professional for Requirements Engineering, Foundation Level",
-    "Oracle Certified Professional, Java SE 6 Programmer",
-    "Claude Code in Action",
-    "Introduction to subagents",
-    "Introduction to agent skills"
+    {
+      "name": "Certified Professional for Requirements Engineering, Foundation Level",
+      "issuer": "IREB",
+      "date": "2017-12"
+    },
+    {
+      "name": "Oracle Certified Professional, Java SE 6 Programmer",
+      "issuer": "Oracle",
+      "date": "2014-06"
+    },
+    {
+      "name": "Claude Code in Action"
+    },
+    {
+      "name": "Introduction to subagents"
+    },
+    {
+      "name": "Introduction to agent skills"
+    }
   ],
   "languages": [
     {

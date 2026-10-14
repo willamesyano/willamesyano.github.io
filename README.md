@@ -10,7 +10,7 @@ All text lives in `assets/data/content.json`:
 
 - `profile`: name, headline, summary, email and social links. Text wrapped in `**double asterisks**` renders in bold.
 - `phases`: one entry per career phase, in chronological order. `short` is the label shown in the 3D scene, `start` and `end` use `YYYY-MM`, and `end: null` marks the current position.
-- `education`, `certifications` and `languages`: the background section.
+- `education`, `certifications` and `languages`: the background section. A certification has a `name` and, optionally, an `issuer` with a `date` in `YYYY-MM`.
 - `ui`: interface strings.
 
 Translatable fields hold one value per language: `{ "en": "...", "pt-BR": "..." }`.
