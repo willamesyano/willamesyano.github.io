@@ -330,7 +330,8 @@ a {
   line-height: 1.25;
 }
 
-.phase-button:hover .phase-tag {
+.phase-button:hover .phase-tag,
+.is-hover .phase-tag {
   border-color: var(--accent);
 }
 
@@ -351,20 +352,86 @@ a {
   will-change: transform;
 }
 
+.stage.is-3d .phase-tag {
+  position: relative;
+  align-items: center;
+  text-align: center;
+  padding: 2px 6px;
+  border-color: transparent;
+  background: transparent;
+  text-shadow: 0 0 6px var(--surface), 0 0 2px var(--surface);
+}
+
+.stage.is-3d .phase-button:hover .phase-tag,
+.stage.is-3d .is-hover .phase-tag {
+  color: var(--accent);
+}
+
+.stage.is-3d .phase-tag::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  height: 14px;
+  background: var(--line);
+}
+
+.stage.is-3d .phase-button[aria-pressed="true"] .phase-tag {
+  padding: 6px 10px;
+  border-color: var(--accent);
+  background: var(--surface-raised);
+  text-shadow: none;
+}
+
+.stage.is-3d .phase-button[aria-pressed="true"] .phase-tag::after {
+  background: var(--accent);
+}
+
 .stage.is-3d .is-below .phase-tag {
-  transform: translate(-50%, 16px);
+  transform: translate(-50%, 18px);
+}
+
+.stage.is-3d .is-below .phase-tag::after {
+  bottom: 100%;
 }
 
 .stage.is-3d .is-above .phase-tag {
-  transform: translate(-50%, calc(-100% - 16px));
+  transform: translate(-50%, calc(-100% - 18px));
+}
+
+.stage.is-3d .is-above .phase-tag::after {
+  top: 100%;
+}
+
+.stage.is-3d.is-portrait .phase-tag {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.stage.is-3d.is-portrait .phase-tag::after {
+  top: 50%;
+  left: auto;
+  width: 14px;
+  height: 1px;
 }
 
 .stage.is-3d.is-portrait .is-below .phase-tag {
-  transform: translate(16px, -50%);
+  transform: translate(18px, -50%);
+}
+
+.stage.is-3d.is-portrait .is-below .phase-tag::after {
+  bottom: auto;
+  right: 100%;
 }
 
 .stage.is-3d.is-portrait .is-above .phase-tag {
-  transform: translate(calc(-100% - 16px), -50%);
+  align-items: flex-end;
+  text-align: right;
+  transform: translate(calc(-100% - 18px), -50%);
+}
+
+.stage.is-3d.is-portrait .is-above .phase-tag::after {
+  left: 100%;
 }
 
 .stage.is-3d.is-compact .phase-company {

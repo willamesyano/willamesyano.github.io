@@ -100,8 +100,12 @@ function formatMonth({ year, month }) {
   return `${name.charAt(0).toUpperCase()}${name.slice(1)} ${year}`;
 }
 
+function monthsBetween(start, end) {
+  return (end.year * 12 + end.month) - (start.year * 12 + start.month) + 1;
+}
+
 function formatDuration(start, end) {
-  const total = (end.year * 12 + end.month) - (start.year * 12 + start.month) + 1;
+  const total = monthsBetween(start, end);
   const years = Math.floor(total / 12);
   const months = total % 12;
   const parts = [];
@@ -280,6 +284,7 @@ function setupScene() {
       stage,
       labels: state.labels,
       techCounts: state.content.phases.map((phase) => phase.tech.length),
+      durations: state.content.phases.map((phase) => monthsBetween(parseMonth(phase.start), parseMonth(phase.end))),
       onSelect: selectPhase,
       reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
     });
