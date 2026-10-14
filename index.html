@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Willames Yano · Senior Software Engineer</title>
+  <meta name="description" content="Willames Yano, Senior Software Engineer working with Java, Spring, Angular, PostgreSQL, Docker and AWS.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script type="importmap">{ "imports": { "three": "./assets/vendor/three/three.module.min.js" } }</script>
+  <link rel="modulepreload" href="assets/vendor/three/three.module.min.js">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top">willamesyano</a>
+      <div class="lang" role="group" data-ui-label="languageLabel" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="pt-BR">PT</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span><span data-bind="location"></span></p>
+      <h1 data-bind="name">Willames Yano</h1>
+      <p class="headline" data-bind="headline"></p>
+      <div class="summary" data-bind="summary"></div>
+      <ul class="contact" data-bind="contact"></ul>
+      <noscript>
+        <p class="summary">Senior Software Engineer. <a href="mailto:willamesyano@gmail.com">willamesyano@gmail.com</a> · <a href="https://www.linkedin.com/in/willamesyano/">LinkedIn</a></p>
+      </noscript>
+    </section>
+
+    <section class="career wrap" aria-labelledby="career-title">
+      <header class="section-head">
+        <p class="eyebrow mono" data-ui="careerEyebrow"></p>
+        <h2 id="career-title" data-ui="careerTitle"></h2>
+        <p class="hint" data-ui="careerHint"></p>
+      </header>
+      <div class="career-grid">
+        <div class="stage" id="stage" role="group" data-ui-label="stageLabel">
+          <canvas id="scene" aria-hidden="true"></canvas>
+          <ol class="phase-list" id="phase-list"></ol>
+        </div>
+        <article class="detail" id="detail" aria-live="polite"></article>
+      </div>
+    </section>
+
+    <section class="background wrap" aria-labelledby="background-title">
+      <header class="section-head">
+        <p class="eyebrow mono" data-ui="backgroundEyebrow"></p>
+        <h2 id="background-title" data-ui="backgroundTitle"></h2>
+      </header>
+      <div class="facts">
+        <section class="fact">
+          <h3 data-ui="education"></h3>
+          <ul class="fact-list" data-bind="education"></ul>
+        </section>
+        <section class="fact">
+          <h3 data-ui="certifications"></h3>
+          <ul class="fact-list" data-bind="certifications"></ul>
+        </section>
+        <section class="fact">
+          <h3 data-ui="languages"></h3>
+          <ul class="fact-list" data-bind="languages"></ul>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <p><span data-bind="copyright"></span> · <span data-ui="footer"></span></p>
+  </footer>
+</body>
+</html>

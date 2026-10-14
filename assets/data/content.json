@@ -1,0 +1,471 @@
+{
+  "profile": {
+    "name": "Willames Yano",
+    "headline": {
+      "en": "Senior Software Engineer · Fullstack",
+      "pt-BR": "Engenheiro de Software Sênior · Fullstack"
+    },
+    "location": {
+      "en": "Brazil",
+      "pt-BR": "Brasil"
+    },
+    "email": "willamesyano@gmail.com",
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/willamesyano/",
+      "x": "https://x.com/willamesyano"
+    },
+    "summary": {
+      "en": [
+        "I am a Senior Software Engineer with over **10 years** of experience working with Java, Spring, Angular, PostgreSQL, Docker and AWS. I bring a versatile skill set to tackle challenges across the development stack and thrive on creating impactful, scalable, and user-centric solutions.",
+        "I have had the privilege of contributing to **2 international projects**, which enhanced my ability to collaborate with diverse teams and deliver results that meet global standards. My focus is on combining technical proficiency with innovative approaches to drive business success.",
+        "Whether I'm architecting backend systems, crafting seamless frontend experiences, or optimizing deployments, I am driven by creativity and a passion for innovation."
+      ],
+      "pt-BR": [
+        "Sou Engenheiro de Software Sênior com mais de **10 anos** de experiência em Java, Spring, Angular, PostgreSQL, Docker e AWS. Tenho um repertório versátil para resolver desafios em todas as camadas do desenvolvimento e gosto de criar soluções escaláveis, de impacto e centradas no usuário.",
+        "Tive o privilégio de contribuir com **2 projetos internacionais**, o que fortaleceu minha capacidade de colaborar com equipes diversas e entregar resultados dentro de padrões globais. Meu foco é unir domínio técnico e abordagens inovadoras para gerar resultado para o negócio.",
+        "Seja arquitetando sistemas de backend, construindo experiências de frontend fluidas ou otimizando deploys, sou movido pela criatividade e pela paixão por inovação."
+      ]
+    }
+  },
+  "phases": [
+    {
+      "id": "canix-2009",
+      "company": "Canix Soluções em TI",
+      "short": "Canix",
+      "role": {
+        "en": "Java Web Developer",
+        "pt-BR": "Desenvolvedor Java Web"
+      },
+      "start": "2009-07",
+      "end": "2012-07",
+      "location": {
+        "en": "Greater Fortaleza",
+        "pt-BR": "Região de Fortaleza"
+      },
+      "summary": {
+        "en": "Started as an intern and became a junior developer after one year, in a team of 18 people including project manager, software engineers, back-end and front-end developers and testers.",
+        "pt-BR": "Comecei como estagiário e, depois de um ano, passei a desenvolvedor júnior, num time de 18 pessoas com gerente de projeto, engenheiros de software, desenvolvedores back-end e front-end e testadores."
+      },
+      "activities": {
+        "en": [
+          "Backend development",
+          "Software deployment",
+          "Software training"
+        ],
+        "pt-BR": [
+          "Desenvolvimento backend",
+          "Implantação de software",
+          "Treinamento de usuários"
+        ]
+      },
+      "tech": [
+        "Java",
+        "Hibernate",
+        "Spring",
+        "JavaScript",
+        "iReport",
+        "Selenium IDE",
+        "PostgreSQL",
+        "Tomcat",
+        "JBoss",
+        "Scrum",
+        "SVN"
+      ]
+    },
+    {
+      "id": "srh-2012",
+      "company": "Secretaria dos Recursos Hídricos",
+      "short": "SRH Ceará",
+      "role": {
+        "en": "Software Engineer",
+        "pt-BR": "Engenheiro de Software"
+      },
+      "start": "2012-09",
+      "end": "2014-09",
+      "location": {
+        "en": "Greater Fortaleza",
+        "pt-BR": "Região de Fortaleza"
+      },
+      "summary": {
+        "en": "Fullstack development for the Ceará State Water Resources Secretariat.",
+        "pt-BR": "Desenvolvimento fullstack para a Secretaria dos Recursos Hídricos do Ceará."
+      },
+      "activities": {
+        "en": [
+          "Fullstack development",
+          "System modeling",
+          "Systems integration development"
+        ],
+        "pt-BR": [
+          "Desenvolvimento fullstack",
+          "Modelagem de sistemas",
+          "Desenvolvimento de integrações entre sistemas"
+        ]
+      },
+      "tech": [
+        "Java",
+        "Hibernate",
+        "Spring",
+        "JavaScript",
+        "JSF",
+        "PrimeFaces",
+        "RichFaces",
+        "iReport",
+        "Selenium IDE",
+        "PostgreSQL",
+        "MySQL",
+        "Tomcat",
+        "JBoss",
+        "Maven",
+        "Git"
+      ]
+    },
+    {
+      "id": "atlantico-2016",
+      "company": "Instituto Atlântico",
+      "short": "Instituto Atlântico",
+      "role": {
+        "en": "Software Engineer",
+        "pt-BR": "Engenheiro de Software"
+      },
+      "start": "2016-04",
+      "end": "2016-11",
+      "location": {
+        "en": "Greater Fortaleza",
+        "pt-BR": "Região de Fortaleza"
+      },
+      "summary": {
+        "en": "CWP (Common Web Platform) 24x7 operation, an HP Brazil R&D project. The team kept CWP components available 24 hours a day within the levels agreed with customers, alongside development work.",
+        "pt-BR": "Operação 24x7 da CWP (Common Web Platform), projeto de P&D da HP Brasil. O time mantinha os componentes da CWP disponíveis 24 horas por dia dentro dos níveis acordados com os clientes, além do trabalho de desenvolvimento."
+      },
+      "activities": {
+        "en": [
+          "Tooling to monitor CWP components",
+          "Failure investigation",
+          "Solutions proposed within the timeframe set by each failure's criticality"
+        ],
+        "pt-BR": [
+          "Ferramentas de monitoramento dos componentes da CWP",
+          "Investigação de falhas",
+          "Propostas de solução no prazo exigido pela criticidade de cada falha"
+        ]
+      },
+      "tech": []
+    },
+    {
+      "id": "ifactory-2017",
+      "company": "iFactory Solutions",
+      "short": "iFactory",
+      "role": {
+        "en": "Software Engineer",
+        "pt-BR": "Engenheiro de Software"
+      },
+      "start": "2017-01",
+      "end": "2017-08",
+      "location": {
+        "en": "Greater Fortaleza",
+        "pt-BR": "Região de Fortaleza"
+      },
+      "summary": {
+        "en": "Load, unit and automated testing.",
+        "pt-BR": "Testes de carga, testes unitários e automação de testes."
+      },
+      "activities": {
+        "en": [
+          "Load testing development",
+          "Unit testing development",
+          "Test automation solution for Jenkins"
+        ],
+        "pt-BR": [
+          "Desenvolvimento de testes de carga",
+          "Desenvolvimento de testes unitários",
+          "Solução de automação de testes no Jenkins"
+        ]
+      },
+      "tech": [
+        "Java EE",
+        "JMeter",
+        "TestNG",
+        "REST",
+        "SOAP",
+        "WSO2",
+        "SoapUI",
+        "Jenkins",
+        "Git",
+        "Scrum",
+        "Kanban"
+      ]
+    },
+    {
+      "id": "canix-2017",
+      "company": "Canix Soluções em TI",
+      "short": "Canix",
+      "role": {
+        "en": "Software Engineer",
+        "pt-BR": "Engenheiro de Software"
+      },
+      "start": "2017-09",
+      "end": "2020-07",
+      "location": {
+        "en": "Fortaleza, Ceará, Brazil",
+        "pt-BR": "Fortaleza, Ceará, Brasil"
+      },
+      "summary": {
+        "en": "Fortaleza Online, for the Municipal Secretariat of Urbanism and Environment of Fortaleza City Hall.",
+        "pt-BR": "Fortaleza Online, para a Secretaria Municipal de Urbanismo e Meio Ambiente da Prefeitura de Fortaleza."
+      },
+      "activities": {
+        "en": [
+          "Fullstack and API development",
+          "System modeling and systems integration",
+          "New products: Simplified Environmental License for Activities, Urban-Environmental Installation License, License Exemption for Urban-Environmental Installation, Works Completion Term, Rate Simulator",
+          "Maintenance and enhancements: Building Permit, Business License, Health License, Environmental Licensing Exemptions, Simplified Environmental License for Civil Construction"
+        ],
+        "pt-BR": [
+          "Desenvolvimento fullstack e de APIs",
+          "Modelagem de sistemas e integrações",
+          "Novos produtos: Licença Ambiental Simplificada para Atividades, Licença de Instalação Urbano-Ambiental, Dispensa de Licença de Instalação Urbano-Ambiental, Termo de Conclusão de Obra, Simulador de Taxas",
+          "Manutenção e evolução: Alvará de Construção, Alvará de Funcionamento, Licença Sanitária, Dispensas de Licenciamento Ambiental, Licença Ambiental Simplificada para Construção Civil"
+        ]
+      },
+      "tech": [
+        "Java EE",
+        "Hibernate",
+        "Spring",
+        "PrimeFaces",
+        "Maven",
+        "iReport",
+        "JavaScript",
+        "REST API",
+        "Web Services",
+        "Swagger",
+        "PostgreSQL",
+        "WildFly 8",
+        "SVN",
+        "Scrum",
+        "Kanban"
+      ]
+    },
+    {
+      "id": "maps-2020",
+      "company": "MAPS S.A. Soluções e Serviços",
+      "short": "MAPS",
+      "role": {
+        "en": "Software Engineer",
+        "pt-BR": "Engenheiro de Software"
+      },
+      "start": "2020-09",
+      "end": "2024-02",
+      "location": null,
+      "summary": {
+        "en": "New features and bug fixes for Maps Pegasus, a custody and control platform for investment funds and portfolios.",
+        "pt-BR": "Novas funcionalidades e correções no Maps Pegasus, plataforma de custódia e controle de fundos de investimento e carteiras."
+      },
+      "activities": {
+        "en": [
+          "Asset and client positions control",
+          "Funds accounting and regulatory reporting",
+          "Settlement, custody and reconciliation",
+          "Online and offline compliance",
+          "Market data capture and book of records"
+        ],
+        "pt-BR": [
+          "Controle de posições de ativos e de clientes",
+          "Contabilidade de fundos e relatórios regulatórios",
+          "Liquidação, custódia e conciliação",
+          "Compliance online e offline",
+          "Captura de dados de mercado e book of records"
+        ]
+      },
+      "tech": [
+        "Java",
+        "Spring Boot",
+        "Liquibase",
+        "Linux",
+        "AWS",
+        "Docker",
+        "WildFly",
+        "JBoss",
+        "WebSphere",
+        "Hibernate",
+        "Angular",
+        "REST",
+        "ActiveMQ",
+        "Kafka",
+        "Maven",
+        "Git",
+        "TDD",
+        "JUnit",
+        "Jenkins",
+        "Scrum",
+        "Kanban"
+      ]
+    },
+    {
+      "id": "desenvolve-cidade-2024",
+      "company": "Desenvolve Cidade",
+      "short": "Desenvolve Cidade",
+      "role": {
+        "en": "Senior Fullstack Developer",
+        "pt-BR": "Desenvolvedor Fullstack Sênior"
+      },
+      "start": "2024-03",
+      "end": null,
+      "location": {
+        "en": "Belém, Pará, Brazil",
+        "pt-BR": "Belém, Pará, Brasil"
+      },
+      "summary": {
+        "en": "Startup building tax collection and licensing technology for Brazilian cities. I work on Desenvolve Cidade, the process management product for city administrations, refining, building improvements and fixing bugs.",
+        "pt-BR": "Startup de tecnologia para arrecadação e licenciamento em municípios brasileiros. Atuo no Desenvolve Cidade, produto de gestão de processos para prefeituras, refinando, desenvolvendo melhorias e corrigindo bugs."
+      },
+      "activities": {
+        "en": [
+          "Digital protocol creation and forwarding",
+          "Document attachment and analysis in processes",
+          "Issuing opinions",
+          "Debt entry and debt report",
+          "Protocol export"
+        ],
+        "pt-BR": [
+          "Criação e tramitação de protocolo digital",
+          "Anexação e análise de documentos em processos",
+          "Emissão de pareceres",
+          "Lançamento de débitos e relatório de débitos",
+          "Exportação de protocolos"
+        ]
+      },
+      "tech": [
+        "Java 17",
+        "Angular 13",
+        "Spring",
+        "JSF",
+        "PrimeFaces",
+        "PrimeNG",
+        "Hibernate",
+        "PostgreSQL",
+        "Kafka",
+        "SOAP",
+        "WSDL",
+        "Jasper Reports",
+        "JUnit",
+        "TDD",
+        "Selenium",
+        "Jenkins",
+        "Git",
+        "GitFlow",
+        "Maven"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "Universidade de Fortaleza",
+      "degree": {
+        "en": "MBA, Project Management",
+        "pt-BR": "MBA em Gerenciamento de Projetos"
+      },
+      "start": 2017,
+      "end": 2018
+    },
+    {
+      "school": "SEDA College",
+      "degree": {
+        "en": "General English Course",
+        "pt-BR": "Curso de Inglês Geral"
+      },
+      "start": 2015,
+      "end": 2015
+    },
+    {
+      "school": "Centro Universitário Estácio do Ceará",
+      "degree": {
+        "en": "Bachelor's degree, Information Systems",
+        "pt-BR": "Bacharelado em Sistemas de Informação"
+      },
+      "start": 2009,
+      "end": 2012
+    }
+  ],
+  "certifications": [
+    "Certified Professional for Requirements Engineering, Foundation Level",
+    "Oracle Certified Professional, Java SE 6 Programmer",
+    "Claude Code in Action",
+    "Introduction to subagents",
+    "Introduction to agent skills"
+  ],
+  "languages": [
+    {
+      "name": {
+        "en": "Portuguese",
+        "pt-BR": "Português"
+      },
+      "level": {
+        "en": "Native",
+        "pt-BR": "Nativo"
+      }
+    },
+    {
+      "name": {
+        "en": "English",
+        "pt-BR": "Inglês"
+      },
+      "level": {
+        "en": "Full professional",
+        "pt-BR": "Profissional pleno"
+      }
+    }
+  ],
+  "ui": {
+    "en": {
+      "title": "Willames Yano · Senior Software Engineer",
+      "description": "Willames Yano, Senior Software Engineer working with Java, Spring, Angular, PostgreSQL, Docker and AWS.",
+      "languageLabel": "Language",
+      "careerEyebrow": "01 · Career",
+      "careerTitle": "Career path",
+      "careerHint": "Select a phase to see its technologies and activities.",
+      "stageLabel": "Career phases",
+      "activities": "Activities",
+      "technologies": "Technologies",
+      "previous": "Previous",
+      "next": "Next",
+      "present": "Present",
+      "year": "yr",
+      "years": "yrs",
+      "month": "mo",
+      "months": "mos",
+      "backgroundEyebrow": "02 · Background",
+      "backgroundTitle": "Education and credentials",
+      "education": "Education",
+      "certifications": "Certifications",
+      "languages": "Languages",
+      "email": "Email",
+      "footer": "Built with Three.js and hosted on GitHub Pages."
+    },
+    "pt-BR": {
+      "title": "Willames Yano · Engenheiro de Software Sênior",
+      "description": "Willames Yano, Engenheiro de Software Sênior com Java, Spring, Angular, PostgreSQL, Docker e AWS.",
+      "languageLabel": "Idioma",
+      "careerEyebrow": "01 · Carreira",
+      "careerTitle": "Trajetória",
+      "careerHint": "Selecione uma fase para ver as tecnologias e atividades.",
+      "stageLabel": "Fases da carreira",
+      "activities": "Atividades",
+      "technologies": "Tecnologias",
+      "previous": "Anterior",
+      "next": "Próxima",
+      "present": "Atual",
+      "year": "ano",
+      "years": "anos",
+      "month": "mês",
+      "months": "meses",
+      "backgroundEyebrow": "02 · Formação",
+      "backgroundTitle": "Formação e credenciais",
+      "education": "Formação acadêmica",
+      "certifications": "Certificações",
+      "languages": "Idiomas",
+      "email": "E-mail",
+      "footer": "Feito com Three.js e publicado no GitHub Pages."
+    }
+  }
+}
